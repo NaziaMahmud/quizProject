@@ -11,6 +11,8 @@ $("#quiz").click(function(){
     $("#createQuestion").addClass("hidden");
     $("#title").removeClass("hidden");
     $("#question-box").removeClass("hidden");
+    //display question
+    
     });
 
 
@@ -27,17 +29,29 @@ function createQuestion(Q,a1,a2,a3,a4){//a1 has to always be the correct answer
 }
 
 $("#submitQuestion").on("click",function(event){
-    event.preventDefault();
+    event.preventDefault();//prevent reload
+    //grab info from from
     let quest = document.getElementById("iformCreateQuestion").value;
     console.log("value is"+ quest);
     let op1 = document.querySelectorAll("#formCreateQuestion input")[1].value;
-    console.log("test"+op1)
+    console.log("test"+op1);
     let op2 = document.querySelectorAll("#formCreateQuestion input")[2].value;
-    console.log("test"+op2)
+    console.log("test"+op2);
     let op3 = document.querySelectorAll("#formCreateQuestion input")[3].value;
-    console.log("test"+op3)
+    console.log("test"+op3);
     let op4 = document.querySelectorAll("#formCreateQuestion input")[4].value;
-    console.log("test"+op4)
+    console.log("test"+op4);
+    //create question object
+    let q1 = createQuestion(quest,op1,op2,op3,op4);
+    //add question object to question list
+    questionList.push(q1);
+
+    console.log(questionList);
+    //resets form after submission
+    document.getElementById("formCreateQuestion").reset();
 })
 
+$("#submitAnswer").on("click",function(event){
 
+
+})
