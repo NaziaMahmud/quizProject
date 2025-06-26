@@ -28,7 +28,16 @@ function createQuestion(Q,a1,a2,a3,a4){//a1 has to always be the correct answer
 
 $("#submitQuestion").on("click",function(event){
     event.preventDefault();
-    let aq = document.getElementById("iformCreateQuestion").value;
-    console.log("value is"+aq);
+    let quest = document.getElementById("iformCreateQuestion").value;
+    console.log("value is"+ quest);
+    let op1 = document.querySelectorAll("#formCreateQuestion input")[1].value;
+    console.log("test"+op1)
+    let op2 = document.querySelectorAll("#formCreateQuestion input")[2].value;
+    console.log("test"+op2)
+    let op3 = document.querySelectorAll("#formCreateQuestion input")[3].value;
+    console.log("test"+op3)
+    let op4 = document.querySelectorAll("#formCreateQuestion input")[4].value;
+    console.log("test"+op4)
 })
+
 
