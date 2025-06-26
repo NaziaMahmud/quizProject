@@ -7,19 +7,36 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="title">Quiz</div>
-    <div id="question-box">
-      <h1 id="question">Question</h1>
-      <div id="answers">
-        <label><input type="text" />hello</label>
-        <label><input type="text" />hello</label>
-        <label><input type="text" />hello</label>
-        <label><input type="text" />hello</label>
-      </div>
+    <div id="buttons">
+      <button id="creationButt">Create Quiz</button>
+      <button id="quiz">Go Quiz!</button>
     </div>
+    <div id="title" class="hidden">Quiz Time!</div>
+    <div id="question-box" class="hidden">
+      <form id="formQuestion">
+        <h1 id="question">Question</h1>
+        <div id="answers">
+          <label><input type="radio" />hello<br /></label>
+          <label><input type="radio" />hello<br /></label>
+          <label><input type="radio" />hello<br /></label>
+          <label><input type="radio" />hello<br /></label>
+        </div>
+      </form>
+    </div>
+    <div id="createQuestion">
+      <form id="formCreateQuestion">
+        <h1 id="questionCreation">Quiz creator</h1>
+        <label
+          >Question:<br /><input type="text" id="formCreateQuestion" /><br
+        /></label>
 
-
-
+        <label>hello<br /><input type="text" id="option1" /><br /></label>
+        <label>hello<br /><input type="text" id="option2" /><br /></label>
+        <label>hello<br /><input type="text" id="option3" /><br /></label>
+        <label>hello<br /><input type="text" id="option4" /><br /></label>
+        <label><br /><input type="submit" /><br /></label>
+      </form>
+    </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <style src="index.js"></style>
