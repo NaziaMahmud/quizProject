@@ -13,15 +13,30 @@ $("#quiz").click(function(){
     $("#title").removeClass("hidden");
     $("#question-box").removeClass("hidden");
     //display question
-    for( j = 0;j<questionList.length;j++ ){
-        displayQuestion(questionList[j].question,questionList[j].option1, questionList[j].option2,questionList[j].option3,questionList[j].option4);
+    showQuestionNumber = 0
+    displayQuestion(questionList[0].question,questionList[0].option1, questionList[0].option2,questionList[0].option3,questionList[0].option4);
 
-    }
+    
     });
 $("#submitAnswer").click(function(){
-    $("input[type='radio']:checked")
+    //record user submission
+    userAnswer.push($("input[type='radio']:checked").val());
+    //go to next question
+    showQuestionNumber++;
+    
+    displayQuestion(questionList[showQuestionNumber].question,questionList[showQuestionNumber].option1, questionList[showQuestionNumber].option2,questionList[showQuestionNumber].option3,questionList[showQuestionNumber].option4);
+    if(showQuestionNumber===(questionList.length-1)){
+        //evaluate answers
+        let numberCorrect = 0;
+        for (k = 0; k<userAnswer.length;k++){
+            if (userAnswer[k] === answers[k]){
+                numberCorrect++;
+            }
+        }
+        $("#question-box").html(`You have ${numberCorrect} out of ${questionList.length} questions.`)
+    }
 });
-
+let showQuestionNumber = 0;
 let questionList = [];
 let userAnswer = [];
 let answers = [];
