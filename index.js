@@ -20,7 +20,7 @@ $("#quiz").click(function(){
     });
 $("#submitAnswer").click(function(){
     $("input[type='radio']:checked")
-};
+});
 
 let questionList = [];
 let userAnswer = [];
