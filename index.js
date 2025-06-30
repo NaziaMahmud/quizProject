@@ -1,5 +1,4 @@
-//toggle quiz or create
-
+//toggle quiz or create quiz
 console.log("test");
 $(".creationButt").click(function () {
   console.log("test");
@@ -13,7 +12,7 @@ $("#quiz").click(function () {
   $("#createQuestion").addClass("hidden");
   $("#title").removeClass("hidden");
   $("#question-box").removeClass("hidden");
-  //display question
+  //display first question
 
   displayQuestion(
     questionList[0].question,
@@ -22,16 +21,21 @@ $("#quiz").click(function () {
     questionList[0].option3,
     questionList[0].option4
   );
+  //resets question to display and user answers
   showQuestionNumber = 0;
   userAnswer = [];
 });
+
+//functionality for submitting answers button
 $("#submitAnswer").on("click", function (event) {
-  event.preventDefault();
+  event.preventDefault(); //prevent reload
+
   //record user submission
   userAnswer.push(
     $("input[type='radio']:checked").closest("label").html().slice(34)
   );
-  //go to next question
+
+  //go to next question to display
   showQuestionNumber++;
   if (showQuestionNumber < questionList.length) {
     displayQuestion(
@@ -42,6 +46,7 @@ $("#submitAnswer").on("click", function (event) {
       questionList[showQuestionNumber].option4
     );
   }
+  //checks if at last question, evaluate answers by looping through list
   if (showQuestionNumber === questionList.length) {
     //evaluate answers
     let numberCorrect = 0;
@@ -50,15 +55,18 @@ $("#submitAnswer").on("click", function (event) {
         numberCorrect++;
       }
     }
+    //displays results
     $("#question").html(
       `You have ${numberCorrect} out of ${questionList.length} questions correct.`
     );
   }
 });
+
 let showQuestionNumber = 0;
 let questionList = [];
 let userAnswer = [];
 let answers = [];
+
 function displayQuestion(Q, a1, a2, a3, a4) {
   //update question in html quiz section
   $("#question").text(Q);
@@ -111,4 +119,4 @@ $("#submitQuestion").on("click", function (event) {
   document.getElementById("formCreateQuestion").reset();
 });
 
-$("#submitAnswer").on("click", function (event) {});
+
