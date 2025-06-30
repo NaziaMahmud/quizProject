@@ -1,4 +1,5 @@
 //toggle quiz or create
+
 console.log('test')
 $(".creationButt").click(function(){
     console.log('test');
@@ -12,11 +13,38 @@ $("#quiz").click(function(){
     $("#title").removeClass("hidden");
     $("#question-box").removeClass("hidden");
     //display question
-    
-    });
+    for( j = 0;j<questionList.length;j++ ){
+        displayQuestion(questionList[j].question,questionList[j].option1, questionList[j].option2,questionList[j].option3,questionList[j].option4);
 
+    }
+    });
+$("#submitAnswer").click(function(){
+    $("input[type='radio']:checked")
+};
 
 let questionList = [];
+let userAnswer = [];
+let answers = [];
+function displayQuestion(Q,a1,a2,a3,a4){
+    //update question in html quiz section
+    $("#question").text(Q);
+
+    let alist =[a1,a2,a3,a4];
+    let loopLength = alist.length
+    //randomly place options in labels in html quiz section
+    for (i = 0;i< loopLength;i++){
+        let rnum = Math.floor(Math.random()*alist.length);
+    
+        document.querySelectorAll("#answers label")[i].innerHTML= `<input type="radio">${alist[rnum]}`;
+        alist.splice(rnum,1);
+    }
+    
+    
+    
+
+
+
+}
 function createQuestion(Q,a1,a2,a3,a4){//a1 has to always be the correct answer
     return {
         question:Q,
