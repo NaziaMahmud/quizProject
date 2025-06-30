@@ -13,19 +13,20 @@ $("#quiz").click(function(){
     $("#title").removeClass("hidden");
     $("#question-box").removeClass("hidden");
     //display question
-    showQuestionNumber = 0
-    displayQuestion(questionList[0].question,questionList[0].option1, questionList[0].option2,questionList[0].option3,questionList[0].option4);
-
     
+    displayQuestion(questionList[0].question,questionList[0].option1, questionList[0].option2,questionList[0].option3,questionList[0].option4);
+    showQuestionNumber = 0;
+    userAnswer = [];
     });
-$("#submitAnswer").click(function(){
+$("#submitAnswer").on("click",function(event){
+    event.preventDefault();
     //record user submission
-    userAnswer.push($("input[type='radio']:checked").val());
+    userAnswer.push($("input[type='radio']:checked").closest('label').html().slice(20));
     //go to next question
     showQuestionNumber++;
-    
-    displayQuestion(questionList[showQuestionNumber].question,questionList[showQuestionNumber].option1, questionList[showQuestionNumber].option2,questionList[showQuestionNumber].option3,questionList[showQuestionNumber].option4);
-    if(showQuestionNumber===(questionList.length-1)){
+    if(showQuestionNumber<(questionList.length)){
+    displayQuestion(questionList[showQuestionNumber].question,questionList[showQuestionNumber].option1, questionList[showQuestionNumber].option2,questionList[showQuestionNumber].option3,questionList[showQuestionNumber].option4);};
+    if(showQuestionNumber===(questionList.length)){
         //evaluate answers
         let numberCorrect = 0;
         for (k = 0; k<userAnswer.length;k++){
@@ -33,8 +34,8 @@ $("#submitAnswer").click(function(){
                 numberCorrect++;
             }
         }
-        $("#question-box").html(`You have ${numberCorrect} out of ${questionList.length} questions.`)
-    }
+        $("#question").html(`You have ${numberCorrect} out of ${questionList.length} questions.`)
+    };
 });
 let showQuestionNumber = 0;
 let questionList = [];
@@ -76,13 +77,14 @@ $("#submitQuestion").on("click",function(event){
     //grab info from from
     let quest = document.getElementById("iformCreateQuestion").value;
     console.log("value is"+ quest);
-    let op1 = document.querySelectorAll("#formCreateQuestion input")[1].value;
+    let op1 = document.querySelectorAll("#formCreateQuestion input")[0].value;
+    answers.push(op1);
     console.log("test"+op1);
-    let op2 = document.querySelectorAll("#formCreateQuestion input")[2].value;
+    let op2 = document.querySelectorAll("#formCreateQuestion input")[1].value;
     console.log("test"+op2);
-    let op3 = document.querySelectorAll("#formCreateQuestion input")[3].value;
+    let op3 = document.querySelectorAll("#formCreateQuestion input")[2].value;
     console.log("test"+op3);
-    let op4 = document.querySelectorAll("#formCreateQuestion input")[4].value;
+    let op4 = document.querySelectorAll("#formCreateQuestion input")[3].value;
     console.log("test"+op4);
     //create question object
     let q1 = createQuestion(quest,op1,op2,op3,op4);
